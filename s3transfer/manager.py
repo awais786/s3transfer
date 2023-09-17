@@ -301,6 +301,12 @@ class TransferManager(object):
             fileobj=fileobj, bucket=bucket, key=key, extra_args=extra_args,
             subscribers=subscribers
         )
+
+        logger.info(
+            'boto3: uploading object for bucket [%s], having key [%s] with acl [%s]',
+            bucket, key, extra_args.get('ACL')
+        )
+
         extra_main_kwargs = {}
         if self._bandwidth_limiter:
             extra_main_kwargs['bandwidth_limiter'] = self._bandwidth_limiter
